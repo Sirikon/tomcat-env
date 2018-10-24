@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+    ports:
+      - 3306:3306
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8001:8080
+
+  tomcat:
+    image: custom-tomcat
+    build: ./custom-tomcat
+    restart: always
+    ports:
+      - 8000:8080
